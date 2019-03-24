@@ -11,6 +11,8 @@ class PostMiddleware extends MiddlewareClass<AppState> {
   }
 
   Future<void> _fetchPosts(dynamic action, NextDispatcher next) async {
+    next(LoadingPostAction(true));
+    
     await Future.delayed(Duration(seconds: 5));
     next(ShowPostAction(false, [10, 9, 8, 7, 6]));
   }

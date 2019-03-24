@@ -10,7 +10,7 @@ class PostState extends Equatable {
 
   factory PostState.initial() {
     return PostState(
-      isLoading: true,
+      isLoading: false,
       posts: [],
     );
   }

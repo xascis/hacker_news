@@ -1,0 +1,15 @@
+{
+    "by": "mike-cardwell",
+    "descendants": 3,
+    "id": 19484449,
+    "kids": [
+        19484456,
+        19489342,
+        19489501
+    ],
+    "score": 29,
+    "time": 1553534519,
+    "title": "Fourteen Year Old Firefox Bug Resolved",
+    "type": "story",
+    "url": "https://bugzilla.mozilla.org/show_bug.cgi?id=288704"
+}

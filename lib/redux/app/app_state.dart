@@ -1,26 +1,30 @@
 import 'package:equatable/equatable.dart';
-
-import 'package:hacker_news/redux/post/post_state.dart';
+import 'package:hacker_news/models/item.dart';
+import 'package:hacker_news/redux/top_stories/top_stories_state.dart';
 
 class AppState extends Equatable {
-  final PostState postState;
+  final Map<int, Item> items; // ItemState ??
+  final TopStoriesState topStoriesState;
+  // final NewStoriesState newStoriesState;
 
-  AppState({this.postState});
+  AppState({this.items, this.topStoriesState});
 
   factory AppState.initial() {
     return AppState(
-      postState: PostState.initial(),
+      items: {},
+      topStoriesState: TopStoriesState.initial(),
     );
   }
 
-	AppState copyWith({PostState postState}) {
+	AppState copyWith({List<Item> items, TopStoriesState topStoriesState}) {
 		return AppState(
-			postState: postState ?? this.postState,
+      items: items ?? this.items,
+			topStoriesState: topStoriesState ?? this.topStoriesState,
 		);
 	}
 
 	@override
 	String toString() {
-		return 'AppState{postState: $postState}';
+		return 'AppState{items: $items, topStoriesState: $topStoriesState}';
 	}
 }

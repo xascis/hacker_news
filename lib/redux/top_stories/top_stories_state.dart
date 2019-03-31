@@ -4,29 +4,29 @@ import 'package:equatable/equatable.dart';
 
 class TopStoriesState extends Equatable {
   final bool isLoading;
-  final List stories;
+  final List<int> topStories;
   final String error;
 
-  TopStoriesState({@required this.isLoading, @required this.stories, @required this.error});
+  TopStoriesState({@required this.isLoading, @required this.topStories, @required this.error});
 
   factory TopStoriesState.initial() {
     return TopStoriesState(
       isLoading: false,
-      stories: [],
+      topStories: [],
       error: "",
     );
   }
 
-  TopStoriesState copyWith({bool isLoading, List stories, String error}) {
+  TopStoriesState copyWith({bool isLoading, List<int> topStories, String error}) {
     return TopStoriesState(
       isLoading: isLoading ?? this.isLoading,
-      stories: stories ?? this.stories,
+      topStories: topStories ?? this.topStories,
       error: error ?? this.error,
     );
   }
 
   @override
 	String toString() {
-		return 'TopStoriesState{isLoading: $isLoading, stories: $stories, error: $error}';
+		return 'TopStoriesState{isLoading: $isLoading, topStories: $topStories, error: $error}';
 	}
 }

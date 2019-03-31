@@ -45,14 +45,14 @@ class HomeScreen extends StatelessWidget {
                       ),
                     );
                   }
-                  if (topStoriesViewModel.stories.isNotEmpty) {
+                  if (topStoriesViewModel.topStories.isNotEmpty) {
                     return Expanded(
                       child: ListView.builder(
                         padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                         controller: _scrollController,
-                        itemCount: topStoriesViewModel.stories.length,
+                        itemCount: topStoriesViewModel.topStories.length,
                         itemBuilder: (BuildContext context, int index) {
-                          int id = topStoriesViewModel.stories[index];
+                          int id = topStoriesViewModel.topStories[index];
                           return StoreConnector<AppState, Item>(
                             onInit: (Store<AppState> store) => store.dispatch(FetchItemAction(id)),
                             converter: (store) => store.state.items[id],

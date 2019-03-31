@@ -3,15 +3,15 @@ import 'package:redux/redux.dart';
 
 class TopStoriesViewModel {
   final bool isLoading;
-  final List stories;
+  final List<int> topStories;
   final String error;
 
-  TopStoriesViewModel({this.isLoading, this.stories, this.error});
+  TopStoriesViewModel({this.isLoading, this.topStories, this.error});
 
   static TopStoriesViewModel fromStore(Store<AppState> store) {
     return TopStoriesViewModel(
       isLoading: store.state.topStoriesState.isLoading,
-      stories: store.state.topStoriesState.stories,
+      topStories: store.state.topStoriesState.topStories,
       error: store.state.topStoriesState.error,
     );
   }

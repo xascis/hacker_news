@@ -5,8 +5,8 @@ class LoadingTopStoriesAction {
 
 class ShowTopStoriesAction {
   final bool isLoading;
-  final List stories;
-  ShowTopStoriesAction(this.isLoading, this.stories);
+  final List<int> topStories;
+  ShowTopStoriesAction(this.isLoading, this.topStories);
 }
 
 

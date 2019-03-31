@@ -2,6 +2,7 @@ import 'package:hacker_news/models/item.dart';
 import 'package:hacker_news/resources/api_provider.dart';
 
 class Repository {
+
   List<Source> sources = <Source> [
     ApiProvider(),
     // TODO: add DB_Provider
@@ -45,7 +46,7 @@ class Repository {
 
 }
 
-Repository repository = Repository();
+// Repository repository = Repository();
 
 
 abstract class Source {

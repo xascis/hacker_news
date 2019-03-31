@@ -5,6 +5,8 @@ import 'package:hacker_news/resources/repository.dart';
 import 'package:redux/redux.dart';
 
 class ItemMiddleware extends MiddlewareClass<AppState> {
+  Repository repository = Repository();
+
   @override
   Future<void> call(Store<AppState> store, dynamic action, NextDispatcher next) async {
     if (action is FetchItemAction) await _fetchItem(action, next);
@@ -15,7 +17,7 @@ class ItemMiddleware extends MiddlewareClass<AppState> {
   Future<void> _fetchItem(FetchItemAction action, NextDispatcher next) async {
     // next(LoadingItemAction(true));
 
-    Item item = await Repository().fetchItem(action.id).catchError((e) => print("$e"));
+    Item item = await repository.fetchItem(action.id).catchError((e) => print("$e"));
 
     next(AddItemAction(item));
   }

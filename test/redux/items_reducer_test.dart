@@ -26,9 +26,7 @@ void main () {
       store.dispatch(AddItemAction(item));
 
       expect(store.state.items, {item.id: item});
-
-
-
+      
     });
   });
 }

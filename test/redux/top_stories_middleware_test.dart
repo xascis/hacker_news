@@ -14,13 +14,10 @@ void main() {
     test('fetch top stories', (){
       final mockRepository = MockRepository();
       
-      TopStoriesMiddleware topStoriesMiddleware = TopStoriesMiddleware();
-      topStoriesMiddleware.repository = mockRepository;
-
       Store store = Store<AppState>(
         appReducer,
         initialState: AppState.initial(),
-        middleware: [topStoriesMiddleware]
+        middleware: [TopStoriesMiddleware(mockRepository)]
       );
 
       final topStories = [1, 2, 3, 4, 5];

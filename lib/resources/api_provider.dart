@@ -6,13 +6,15 @@ import 'package:hacker_news/utils/constants_utils.dart';
 import 'package:http/http.dart' as http;
 
 class ApiProvider implements Source {
-  http.Client client = http.Client();
-  
-  Future<List<int>> fetchTopStories() async  => List.castFrom(await fetch('topstories.json'));
-  Future<Item> fetchItem(int id) async  => Item.fromJson(await fetch('item/$id.json'));
+  final http.Client _client;
 
-  Future<dynamic> fetch(String url) async {
-    final response = await client.get("$host/$url");
+  ApiProvider(this._client);
+  
+  Future<List<int>> fetchTopStories([http.Client client]) async  => List.castFrom(await fetch(client, 'topstories.json'));
+  Future<Item> fetchItem(int id, [http.Client client]) async  => Item.fromJson(await fetch(client, 'item/$id.json'));
+
+  Future<dynamic> fetch(http.Client client, String url) async {
+    final response = await (client ?? this._client).get("$host/$url");
 
     if (!_responseSuccess(response)) throw http.ClientException(response.body);
 

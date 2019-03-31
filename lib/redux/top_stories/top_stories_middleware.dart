@@ -8,7 +8,9 @@ import 'package:redux/redux.dart';
 // }
 
 class TopStoriesMiddleware extends MiddlewareClass<AppState> {
-  Repository repository = Repository();
+  final Repository repository;
+
+  TopStoriesMiddleware(this.repository);
 
   @override
   Future<void> call(Store<AppState> store, dynamic action, NextDispatcher next) async {

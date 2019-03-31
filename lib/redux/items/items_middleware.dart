@@ -5,7 +5,9 @@ import 'package:hacker_news/resources/repository.dart';
 import 'package:redux/redux.dart';
 
 class ItemMiddleware extends MiddlewareClass<AppState> {
-  Repository repository = Repository();
+  final Repository repository;
+
+  ItemMiddleware(this.repository);
 
   @override
   Future<void> call(Store<AppState> store, dynamic action, NextDispatcher next) async {

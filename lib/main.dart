@@ -7,6 +7,8 @@ import 'package:hacker_news/ui/home_screen.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  final store = createStore();
+
   @override
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(

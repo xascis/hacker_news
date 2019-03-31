@@ -8,16 +8,21 @@ import 'package:http/http.dart' as http;
 class ApiProvider implements Source {
   http.Client client = http.Client();
   
-  Future<List<int>> fetchTopStories() async  => List.castFrom(await _fetch('topstories.json'));
-  Future<Item> fetchItem(int id) async  => Item.fromJson(await _fetch('item/$id.json'));
+  Future<List<int>> fetchTopStories() async  => List.castFrom(await fetch('topstories.json'));
+  Future<Item> fetchItem(int id) async  => Item.fromJson(await fetch('item/$id.json'));
 
-  Future<dynamic> _fetch(String url) async {
+  Future<dynamic> fetch(String url) async {
     final response = await client.get("$host/$url");
 
-    if (response.statusCode == 401) throw ApiException(json.decode(response.body)["error"]);
     if (!_responseSuccess(response)) throw http.ClientException(response.body);
 
-    return json.decode(response.body);
+    var jsonReponse = json.decode(response.body);
+    
+    if (response.statusCode == 401) throw ApiException(jsonReponse["error"]);
+
+    if (jsonReponse == null) throw ApiException("Not found");
+
+    return jsonReponse;
   }
   bool _responseSuccess(response) {
     return response.statusCode >= 200 && response.statusCode < 300;

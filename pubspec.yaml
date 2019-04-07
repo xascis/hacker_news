@@ -89,8 +89,4 @@ flutter:
         - asset: assets/fonts/OpenSans-Bold.ttf
         - asset: assets/fonts/OpenSans-Italic.ttf
         - asset: assets/fonts/OpenSans-Regular.ttf
-    - family: Quicksand
-      fonts:
-        - asset: assets/fonts/Quicksand-Bold.ttf
-        - asset: assets/fonts/Quicksand-Medium.ttf
-        - asset: assets/fonts/Quicksand-Regular.ttf
+

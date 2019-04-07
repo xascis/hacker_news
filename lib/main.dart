@@ -3,7 +3,9 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:hacker_news/redux/app/app_state.dart';
 import 'package:hacker_news/redux/store.dart';
 import 'package:hacker_news/ui/home_screen.dart';
+import 'package:hacker_news/ui/theme.dart';
 
+// TODO: add portratit only
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
       store: store,
       child: MaterialApp(
         title: 'Hacker News',
-        theme: ThemeData(primarySwatch: Colors.purple,),
+        theme: theme,
         home: HomeScreen(),
       ),
     );

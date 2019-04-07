@@ -1,23 +1,24 @@
 import 'package:hacker_news/models/item.dart';
 import 'package:hacker_news/resources/api_provider.dart';
-import 'package:http/http.dart' as http;
 
 class Repository {
-  final http.Client _client;
+  final ApiProvider _apiProvider;
 
-  static ApiProvider _apiProvider;
+  static List<Source> _sources;
+  static List<Cache> _caches;
 
-  Repository(this._client) {
-    _apiProvider = ApiProvider(_client);
+  Repository(this._apiProvider) {
+    _sources = [
+      _apiProvider,
+      // TODO: add DB_Provider
+    ];
+
+    _caches = <Cache> [
+      // TODO: add DB_Provider
+    ];
   }
 
-  List<Source> _sources = <Source> [
-    _apiProvider,
-    // TODO: add DB_Provider
-  ];
-  List<Cache> _caches = <Cache> [
-    // TODO: add DB_Provider
-  ];
+    
 
   Future<List<int>> fetchTopStories() async {
     List<int> list;

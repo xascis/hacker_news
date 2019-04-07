@@ -1,29 +1,39 @@
 import 'package:flutter/material.dart';
 
-// texto
-Color colorTextBlue = Colors.blue[800];
-Color colorTextGrey = Colors.grey[800];
+// colors
+Color colorOrange = const Color(0xFFd67226);
+Color colorLigthBeige = const Color(0xFFefecca);
+Color colorLightBlueGrey = const Color(0xFFa9cbb7);
+Color colorYellow = const Color(0xFFf7ff58);
+Color colorDarkGrey = const Color(0xFF5e565a);
 
-final ThemeData themeData = _buildAppTheme();
+// textstyles
+TextStyle smallText = TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400, fontFamily: 'Open Sans');
+TextStyle regularText = TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400, fontFamily: 'Open Sans');
+TextStyle bigText = TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400, fontFamily: 'Open Sans');
+TextStyle biggerText = TextStyle(fontSize: 22.0, fontWeight: FontWeight.w400, fontFamily: 'Open Sans');
+TextStyle biggestText = TextStyle(fontSize: 28.0, fontWeight: FontWeight.w400, fontFamily: 'Open Sans');
+
+final ThemeData theme= _buildAppTheme();
 
 ThemeData _buildAppTheme() {
   final ThemeData base = new ThemeData(fontFamily: 'Open Sans');
 
   return base.copyWith(
+    platform: TargetPlatform.android,
     brightness: Brightness.light,
-    accentColor: Colors.yellow,
-    primaryColor: Colors.orange[50],
-    primaryColorDark: Colors.yellow,
+    accentColor: colorYellow,
+    primaryColor: colorOrange,
+    primaryColorDark: Colors.red,
     cardColor: Colors.red,
-    // indicatorColor: kAppColor1,
-    hintColor: Colors.grey,
+    hintColor: colorLigthBeige,
     iconTheme: _customIconTheme(base.iconTheme),
-    highlightColor: Colors.yellow[200],
+    highlightColor: colorYellow,
     scaffoldBackgroundColor: Colors.white,
     buttonTheme: _buildButtonThemeData(base.buttonTheme),
     textTheme: _buildTextTheme(base.textTheme),
     inputDecorationTheme: InputDecorationTheme(
-      contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 15.0),
+      contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 15.0),
       filled: false,
       hintStyle: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400, fontFamily: 'Quicksand'),
       border: OutlineInputBorder(
@@ -34,33 +44,30 @@ ThemeData _buildAppTheme() {
     ),
   );
 }
-
 ButtonThemeData _buildButtonThemeData(ButtonThemeData base){
   return base.copyWith(
-    buttonColor: Colors.blue[800],
+    buttonColor: colorDarkGrey,
     padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(8.0)),
     ),
   );
 }
-
 TextTheme _buildTextTheme(TextTheme base) {
   return base.copyWith(
     subhead: base.subhead.copyWith(
       fontWeight: FontWeight.w400,
       fontSize: 14.0,
-      color: colorTextBlue
+      color: colorDarkGrey
     ),
     body1: base.body1.copyWith(
       fontWeight: FontWeight.w400,
       fontSize: 16.0,
-      color: colorTextBlue
+      color: colorDarkGrey
     ),
     button: base.button.copyWith(
       fontWeight: FontWeight.w500,
       fontSize: 16.0,
-      fontFamily: 'Quicksand'
     ),
     // others
     body2: base.body2.copyWith(
@@ -89,13 +96,6 @@ TextTheme _buildTextTheme(TextTheme base) {
     ),
   );
 }
-
 IconThemeData _customIconTheme(IconThemeData original) {
-  return original.copyWith(color: Colors.green);
+  return original.copyWith(color: colorLightBlueGrey);
 }
-
-TextStyle smallText = TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400, fontFamily: 'Open Sans');
-TextStyle regularText = TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400, fontFamily: 'Open Sans');
-TextStyle bigText = TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400, fontFamily: 'Open Sans');
-TextStyle biggerText = TextStyle(fontSize: 22.0, fontWeight: FontWeight.w400, fontFamily: 'Open Sans');
-TextStyle biggestText = TextStyle(fontSize: 28.0, fontWeight: FontWeight.w400, fontFamily: 'Open Sans');

@@ -11,15 +11,15 @@ class MockRepository extends Mock implements Repository {}
 
 void main() {
   group('top stories middeware', () {
-    test('fetch top stories', (){
-      final mockRepository = MockRepository();
-      
-      Store store = Store<AppState>(
+    final mockRepository = MockRepository();
+
+    Store store = Store<AppState>(
         appReducer,
         initialState: AppState.initial(),
         middleware: [TopStoriesMiddleware(mockRepository)]
       );
 
+    test('fetch top stories', (){
       final topStories = [1, 2, 3, 4, 5];
 
       when(mockRepository.fetchTopStories()).thenAnswer((_) => Future.value(topStories));

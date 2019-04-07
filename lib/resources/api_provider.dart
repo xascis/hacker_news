@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 class ApiProvider implements Source {
   final http.Client _client;
 
-  ApiProvider(this._client);
+  const ApiProvider(this._client);
   
   Future<List<int>> fetchTopStories([http.Client client]) async  => List.castFrom(await fetch(client, 'topstories.json'));
   Future<Item> fetchItem(int id, [http.Client client]) async  => Item.fromJson(await fetch(client, 'item/$id.json'));

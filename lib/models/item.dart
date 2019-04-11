@@ -28,7 +28,7 @@ class Item {
       json['dead'] ?? false,
       json['parent'],
       json['poll'],
-      List.castFrom(json['kids']),
+      List.castFrom(json['kids'] ?? []),
       json['url'],
       json['score'],
       json['title'],

@@ -4,8 +4,6 @@ import 'dart:io';
 import 'package:hacker_news/models/item.dart';
 import 'package:hacker_news/resources/api_provider.dart';
 import 'package:hacker_news/resources/repository.dart';
-import 'package:hacker_news/utils/constants_utils.dart';
-import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 

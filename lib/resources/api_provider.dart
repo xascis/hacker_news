@@ -10,8 +10,12 @@ class ApiProvider implements Source {
 
   const ApiProvider(this._client);
   
-  Future<List<int>> fetchTopStories([http.Client client]) async  => List.castFrom(await fetch(client, 'topstories.json'));
-  Future<Item> fetchItem(int id, [http.Client client]) async  => Item.fromJson(await fetch(client, 'item/$id.json'));
+  Future<List<int>> fetchTopStories([http.Client client]) async  {
+    return List.castFrom(await fetch(client, 'topstories.json'));
+  }
+  Future<Item> fetchItem(int id, [http.Client client]) async  {
+    return Item.fromJson(await fetch(client, 'item/$id.json'));
+  }
 
   Future<dynamic> fetch(http.Client client, String url) async {
     final response = await (client ?? this._client).get("$host/$url");
@@ -38,6 +42,6 @@ class ApiException implements Exception {
 
   toString(){
     if(this.error == null) return "ApiException";
-    return "${this.error}";
+    return "${this.error}"; 
   }
 }

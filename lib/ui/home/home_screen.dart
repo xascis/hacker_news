@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
               StreamBuilder(
                 stream: appBloc.topStories,
                 builder: (BuildContext context, AsyncSnapshot<List<int>> snapTop) {
-                  if (snapTop.hasError) return ErrorWidget(error: snapTop.error);
+                  if (snapTop.hasError) return ErrorWidget(snapTop.error);
                   return ProgressIndicatorWidget();
                   if (snapTop.hasData) {
                     return new TopStoriesListWidget(scrollController: _scrollController);

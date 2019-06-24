@@ -1,8 +1,8 @@
 import 'package:bloc_provider/bloc_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:hacker_news/bloc/app_bloc.dart';
-import 'package:hacker_news/ui/home/progress_indicator_widget.dart';
-import 'package:hacker_news/ui/theme.dart';
+import 'package:hacker_news/presentation/features/app/app_bloc.dart';
+import 'package:hacker_news/presentation/features/home/widgets/progress_indicator_widget.dart';
+import 'package:hacker_news/presentation/theme.dart';
 
 class HomeScreen extends StatelessWidget {
   final _scrollController = ScrollController();

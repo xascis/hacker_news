@@ -1,7 +1,4 @@
-import 'package:hacker_news/models/item.dart';
-import 'package:hacker_news/resources/api_provider.dart';
-
-class Repository {
+class RepositoryImp {
   final ApiProvider _apiProvider;
 
   static List<Source> _sources;

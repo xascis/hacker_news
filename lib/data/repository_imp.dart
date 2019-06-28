@@ -1,65 +1,19 @@
-class RepositoryImp {
-  final ApiProvider _apiProvider;
 
-  static List<Source> _sources;
-  static List<Cache> _caches;
+import 'package:hacker_news/data/sources/remote/api_services.dart';
+import 'package:hacker_news/domain/models/item.dart';
+import 'package:hacker_news/domain/repository.dart';
 
-  Repository(this._apiProvider) {
-    _sources = [
-      _apiProvider,
-      // TODO: add DB_Provider
-    ];
+class RepositoryImp implements Repository {
+  final ApiServices apiServices;
 
-    _caches = <Cache> [
-      // TODO: add DB_Provider
-    ];
+  RepositoryImp(this.apiServices);
+  
+  @override Future<List<int>> fetchTopStories() {
+    return apiServices.fetchTopStories();
   }
 
-    
-
-  Future<List<int>> fetchTopStories() async {
-    List<int> list;
-
-    for (Source source in _sources) {
-      list = await source.fetchTopStories();
-      if (list != null) break;
-    }
-
-    // TODO: add to cache ???
-    // for (cache in caches) {
-    //   cache.addListItem(item);
-    // }
-
-    return list;
+  @override Future<Item> fetchItem(int id) {
+    return apiServices.fetchItem(id);
   }
 
-  Future<Item> fetchItem(int id) async {
-    Item item;
-    // Cache cache;
-
-    for (Source source in _sources) {
-      item = await source.fetchItem(id);
-      if (item != null) break;
-    }
-
-    // TODO: add to cache
-    // for (cache in caches) {
-    //   cache.addItem(item);
-    // }
-
-    return item;
-  }
-
-}
-
-// Repository repository = Repository();
-
-
-abstract class Source {
-  Future<List<int>> fetchTopStories();
-  Future<Item> fetchItem(int id);
-}
-
-abstract class Cache {
-  Future<int> addItem(Item item);
 }

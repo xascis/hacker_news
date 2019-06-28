@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hacker_news/ui/theme.dart';
+import 'package:hacker_news/presentation/common/theme.dart';
 
 class ErrorWidget extends StatelessWidget {
   final String _error;

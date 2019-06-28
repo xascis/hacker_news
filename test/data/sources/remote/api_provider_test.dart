@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:hacker_news/models/item.dart';
-import 'package:hacker_news/resources/api_provider.dart';
-import 'package:hacker_news/utils/constants_utils.dart';
+import 'package:hacker_news/data/common/globals.dart';
+import 'package:hacker_news/data/sources/remote/api_services.dart';
+import 'package:hacker_news/domain/models/item.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
@@ -13,7 +13,7 @@ class MockClient extends Mock implements http.Client {}
 void main() {
   group('api provider', () {
     final client = http.Client();
-    final apiProvider = ApiProvider(client);
+    final apiServices = ApiServices(client);
     
     var topStories;
     var item;
@@ -30,9 +30,13 @@ void main() {
     test('fetch top stories, OK', () async {
       var mockClient = MockClient(); 
 
-      when(mockClient.get("$host/topstories.json")).thenAnswer((_) async => http.Response(json.encode(topStories), 200));
+      when(
+        mockClient.get("$host/topstories.json")
+      ).thenAnswer(
+        (_) async => http.Response(json.encode(topStories), 200)
+      );
 
-      final response = await apiProvider.fetchTopStories(mockClient);
+      final response = await apiServices.fetchTopStories();
 
       expect(response, TypeMatcher<List<int>>());
     });
@@ -40,9 +44,13 @@ void main() {
     test('fetch item, OK', () async {
       var mockClient = MockClient(); 
 
-      when(mockClient.get("$host/100.json")).thenAnswer((_) async => http.Response(json.encode(item), 200));
+      when(
+        mockClient.get("$host/100.json")
+      ).thenAnswer(
+        (_) async => http.Response(json.encode(item), 200)
+      );
 
-      final response = await apiProvider.fetchItem(100, client);
+      final response = await apiServices.fetchItem(100);
 
       expect(response, TypeMatcher<Item>());
       
@@ -51,10 +59,14 @@ void main() {
     test('fetch item, null', () async {
       var mockClient = MockClient(); 
 
-      when(mockClient.get("$host/topstories.json")).thenAnswer((_) async => http.Response(json.encode(null), 200));
+      when(
+        mockClient.get("$host/topstories.json")
+      ).thenAnswer(
+        (_) async => http.Response(json.encode(null), 200)
+      );
 
       expect(
-        () => apiProvider.fetchItem(0, client),
+        () => apiServices.fetchItem(0),
         throwsException,
       );
     });
@@ -65,9 +77,11 @@ void main() {
       when(mockClient.get("$host/topstories.json")).thenAnswer((_) async => http.Response(json.encode('{"error": "Permission denied"}'), 401));
 
       expect(
-        () => apiProvider.fetch(client, "top"),
+        () => apiServices.fetch("top"),
         throwsException,
       );
     });
+  
   });
+
 }

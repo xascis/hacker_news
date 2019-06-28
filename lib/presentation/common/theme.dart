@@ -14,7 +14,7 @@ TextStyle bigText = TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400, fontF
 TextStyle biggerText = TextStyle(fontSize: 22.0, fontWeight: FontWeight.w400, fontFamily: 'Open Sans');
 TextStyle biggestText = TextStyle(fontSize: 28.0, fontWeight: FontWeight.w400, fontFamily: 'Open Sans');
 
-final ThemeData theme= _buildAppTheme();
+final ThemeData theme = _buildAppTheme();
 
 ThemeData _buildAppTheme() {
   final ThemeData base = new ThemeData(fontFamily: 'Open Sans');

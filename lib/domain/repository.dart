@@ -1,3 +1,9 @@
+import 'models/item.dart';
+
 abstract class Repository {
-  // TODO: methods
+  
+  Future<List<int>> fetchTopStories();
+
+  Future<Item> fetchItem(int id);
+
 }

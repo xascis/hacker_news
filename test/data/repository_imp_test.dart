@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:hacker_news/models/item.dart';
-import 'package:hacker_news/resources/api_provider.dart';
-import 'package:hacker_news/resources/repository.dart';
+import 'package:hacker_news/data/repository_imp.dart';
+import 'package:hacker_news/data/sources/remote/api_services.dart';
+import 'package:hacker_news/domain/models/item.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-class MockApiProvider extends Mock implements ApiProvider {}
+class MockApiServices extends Mock implements ApiServices {}
 
 void main() {
-  group('repository', (){
-    final apiProvider = MockApiProvider();
-    final repository = Repository(apiProvider);
+  group('repository imp', (){
+    final apiServices = MockApiServices();
+    final repository = RepositoryImp(apiServices);
 
     var topStories;
     var item;
@@ -26,7 +26,7 @@ void main() {
     });
 
     test('fetch top items', () async {
-      when(apiProvider.fetchTopStories()).thenAnswer(
+      when(apiServices.fetchTopStories()).thenAnswer(
         (_) => Future.value(List.castFrom(topStories))
       );
 
@@ -36,7 +36,7 @@ void main() {
     });
 
     test('fetch item', () async {
-      when(apiProvider.fetchItem(100)).thenAnswer(
+      when(apiServices.fetchItem(100)).thenAnswer(
         (_) => Future.value(Item.fromJson(item))
       );
 

@@ -1,24 +1,15 @@
 import 'dart:convert';
 
-import 'package:hacker_news/models/item.dart';
-import 'package:hacker_news/resources/repository.dart';
-import 'package:hacker_news/utils/constants_utils.dart';
+import 'package:hacker_news/data/common/globals.dart';
 import 'package:http/http.dart' as http;
 
-class ApiProvider implements Source {
-  final http.Client _client;
+class ApiClient {
+  final http.Client client;
 
-  const ApiProvider(this._client);
-  
-  Future<List<int>> fetchTopStories([http.Client client]) async  {
-    return List.castFrom(await fetch(client, 'topstories.json'));
-  }
-  Future<Item> fetchItem(int id, [http.Client client]) async  {
-    return Item.fromJson(await fetch(client, 'item/$id.json'));
-  }
+  ApiClient(this.client);
 
-  Future<dynamic> fetch(http.Client client, String url) async {
-    final response = await (client ?? this._client).get("$host/$url");
+  Future<dynamic> fetch(String url) async {
+    final response = await client.get("$host/$url");
 
     if (!_responseSuccess(response)) throw http.ClientException(response.body);
 
@@ -33,6 +24,7 @@ class ApiProvider implements Source {
   bool _responseSuccess(response) {
     return response.statusCode >= 200 && response.statusCode < 300;
   }
+
 }
 
 class ApiException implements Exception {

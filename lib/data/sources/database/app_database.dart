@@ -12,34 +12,30 @@ class AppDatabase{
   // }
   // AppDatabase._internal();
 
-  static Database _db;
-  String _path;
+  static Database db;
   final String _dbName = "main.db";
+
+  // Future<Database> get db async{
+  //   if(_db != null) return _db;
+  //   _db = await _initDb();
+  //   return _db;
+  // }
+
+  void init() async {
+    Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    final path = join(documentsDirectory.path, _dbName);
+    db = await openDatabase(path, version: 1, onCreate: _onCreate);
+  }
+
+  void _onCreate(Database newDb, int version) async {
+    await newDb.execute("CREATE TABLE ${_dbTable['item']} ($_sqlItemColumns)");
+  }
   final Map<String, String> _dbTable= {
     'item': "Item",
   };
+  static String _sqlItemColumns = "id INTEGER PRIMARY KEY, deleted INTEGER, type TEXT, by TEXT, time INTEGER, text TEXT, dead INTEGER, parent INTEGER, poll INTEGER, kids BLOB, url TEXT, score INTEGER, title TEXT, parts BLOB, descendents INTEGER";
 
-  // string para crear las tablas
-  static String _sqlItemColumns = "name TINYTEXT, number INT";
-
-  Future<Database> get db async{
-    if(_db != null) return _db;
-    _db = await _initDb();
-    return _db;
-  }
-
-  _initDb() async {
-    Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    _path = join(documentsDirectory.path, _dbName);
-    var theDb = await openDatabase(_path, version: 1, onCreate: _onCreate);
-    return theDb;
-  }
-
-  void _onCreate(Database db, int version) async {
-    await db.execute("CREATE TABLE ${_dbTable['item']} ($_sqlItemColumns)");
-  }
-
-  Future close() async => _db.close();
+  Future close() async => db.close();
 
   Future<List<Person>> getList01() async{
     List list = await _getTableRecords(_dbTable['table01']);

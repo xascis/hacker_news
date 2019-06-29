@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Item {
   final int id;
   final bool deleted;
@@ -37,15 +39,15 @@ class Item {
     );
   }
 
-  factory Item.fromMap(Map map) {
+  factory Item.fromDb(Map map) {
     return Item(
       map['id'],
-      map['deleted'] ?? false,
+      map['deleted'] == 1,
       map['type'],
       map['by'],
       map['time'],
       map['text'],
-      map['dead'] ?? false,
+      map['dead'] == 1,
       map['parent'],
       map['poll'],
       List.castFrom(map['kids'] ?? []),
@@ -57,9 +59,23 @@ class Item {
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toDb() {
     return <String, dynamic>{
-      "id": this.id
+      "id": this.id,
+      "deleted": this.deleted ? 1 : 0,
+      "type": this.type,
+      "by": this.by,
+      "time": this.time,
+      "text": this.text,
+      "dead": this.dead ? 1 : 0,
+      "parent": this.parent,
+      "poll": this.poll,
+      "kids": jsonEncode(this.kids),
+      "url": this.url,
+      "score": this.score,
+      "title": this.title,
+      "parts": jsonEncode(this.parts),
+      "descendants": this.descendants
     };
   }
   

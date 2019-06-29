@@ -36,5 +36,31 @@ class Item {
       json['descendants'],
     );
   }
+
+  factory Item.fromMap(Map map) {
+    return Item(
+      map['id'],
+      map['deleted'] ?? false,
+      map['type'],
+      map['by'],
+      map['time'],
+      map['text'],
+      map['dead'] ?? false,
+      map['parent'],
+      map['poll'],
+      List.castFrom(map['kids'] ?? []),
+      map['url'],
+      map['score'],
+      map['title'],
+      List.castFrom(map['parts']),
+      map['descendants'],
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      "id": this.id
+    };
+  }
   
 }

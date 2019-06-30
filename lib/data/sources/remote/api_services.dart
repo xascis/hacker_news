@@ -13,5 +13,3 @@ class ApiServices extends ApiClient {
   }
 
 }
-
-final apiServices = ApiServices(http.Client());

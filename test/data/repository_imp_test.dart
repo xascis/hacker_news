@@ -2,17 +2,20 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:hacker_news/data/repository_imp.dart';
+import 'package:hacker_news/data/sources/database/db_services.dart';
 import 'package:hacker_news/data/sources/remote/api_services.dart';
 import 'package:hacker_news/domain/models/item.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 class MockApiServices extends Mock implements ApiServices {}
+class MockDbServices extends Mock implements DbServices {}
 
 void main() {
   group('repository imp', (){
     final apiServices = MockApiServices();
-    final repository = RepositoryImp(apiServices);
+    final dbServices = MockDbServices();
+    final repository = RepositoryImp(apiServices, dbServices);
 
     var topStories;
     var item;

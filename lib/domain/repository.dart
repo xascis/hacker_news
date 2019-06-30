@@ -6,4 +6,8 @@ abstract class Repository {
 
   Future<Item> fetchItem(int id);
 
+  Future<void> insertItems(List<Item> items);
+
+  Future<Item> selectItem(int id);
+
 }

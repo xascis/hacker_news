@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:hacker_news/data/common/globals.dart';
-import 'package:hacker_news/data/sources/remote/api_services.dart';
+import 'package:hacker_news/data/sources/server/api_services.dart';
 import 'package:hacker_news/domain/models/item.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';

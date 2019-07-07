@@ -1,4 +1,4 @@
-import 'package:hacker_news/data/sources/remote/api_client.dart';
+import 'package:hacker_news/data/sources/server/api_client.dart';
 import 'package:hacker_news/domain/models/item.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,3 +13,5 @@ class ApiServices extends ApiClient {
   }
 
 }
+
+var apiServices = ApiServices(http.Client());

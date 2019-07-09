@@ -1,5 +1,5 @@
 import 'package:hacker_news/data/sources/database/db_services.dart';
-import 'package:hacker_news/data/sources/remote/api_services.dart';
+import 'package:hacker_news/data/sources/server/api_services.dart';
 import 'package:hacker_news/domain/models/item.dart';
 import 'package:hacker_news/domain/repository.dart';
 

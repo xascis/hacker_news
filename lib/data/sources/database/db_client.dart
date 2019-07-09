@@ -37,7 +37,5 @@ class DbClient {
       descendents INTEGER
     )""");
   }
-
   Future close() async => db.close();
-  
 }
